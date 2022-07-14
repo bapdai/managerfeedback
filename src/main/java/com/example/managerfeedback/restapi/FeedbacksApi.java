@@ -23,7 +23,7 @@ public class FeedbacksApi {
         return ResponseEntity.ok(feedbackService.getListByStatus(true));
     }
 
-    @GetMapping("/views/fel,edbacks")
+    @GetMapping("/views/feedbacks")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<List<Feedbacks>> getList(){
         return ResponseEntity.ok(feedbackService.getListByStatus(true));
