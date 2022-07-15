@@ -32,4 +32,8 @@ public class CategoryService {
     public List<Category> findAllByStatus(Boolean status){
         return categoryRepository.findAllByStatus(status);
     }
+
+    public Optional<Category> getListByIdAndStatus(Integer id, boolean status){
+        return categoryRepository.findAllByIdAndStatus(id, status);
+    }
 }

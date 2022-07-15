@@ -32,4 +32,8 @@ public class FeedbackService {
     public List<Feedbacks> getListByStatus(boolean status){
         return feedbacksRepository.findAllByStatus(status);
     }
+
+    public Optional<Feedbacks> getListByIdAndStatus(Integer id, boolean status){
+        return feedbacksRepository.findAllByIdAndStatus(id, status);
+    }
 }

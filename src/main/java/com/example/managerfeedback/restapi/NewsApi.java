@@ -28,10 +28,24 @@ public class NewsApi {
         return ResponseEntity.ok(newsService.getListByStatus(true));
     }
 
+//    @GetMapping("/find/by/views")
+//    @PreAuthorize("hasRole('USER')")
+//    public ResponseEntity<List<News>> getListed(){
+//        return ResponseEntity.ok(newsService.getListByViewsDesc(true));
+//    }
+
+//    @GetMapping("/find/by/create")
+//    @PreAuthorize("hasRole('USER')")
+//    public ResponseEntity<List<News>> getListes(){
+//        return ResponseEntity.ok(newsService.getListByCreatedAtDesc());
+//    }
+
+
+
     @GetMapping("/user/views/{id}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
-        Optional<News> optionalNews = newsService.findById(id);
+        Optional<News> optionalNews = newsService.getListByIdAndStatus(id,true);
         if (!optionalNews.isPresent()){
             ResponseEntity.badRequest().build();
         }

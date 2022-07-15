@@ -32,11 +32,11 @@ public class FeedbacksApi {
     @GetMapping("/views/feedbacks/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
-        Optional<Feedbacks> optionalFeedbacks = feedbackService.findById(id);
+        Optional<Feedbacks> optionalFeedbacks = feedbackService.getListByIdAndStatus(id, true);
         if (!optionalFeedbacks.isPresent()){
             ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(feedbackService.findById(id));
+        return ResponseEntity.ok(feedbackService.getListByIdAndStatus(id, true));
     }
 
     @GetMapping("/manager/feedbacks")

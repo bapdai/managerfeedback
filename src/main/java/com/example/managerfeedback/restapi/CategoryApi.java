@@ -33,7 +33,7 @@ public class CategoryApi {
     @GetMapping("/user/views/{id}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
-        Optional<Category> optionalCategory = categoryService.findById(id);
+        Optional<Category> optionalCategory = categoryService.getListByIdAndStatus(id, true);
         if (!optionalCategory.isPresent()){
             ResponseEntity.badRequest().build();
         }
