@@ -75,6 +75,7 @@ public class NewsApi {
 
         existNews.setTitle(news.getTitle());
         existNews.setDescription(news.getDescription());
+        existNews.setImg(news.getImg());
         existNews.setContent(news.getContent());
         existNews.setViews(news.getViews());
         existNews.setStatus(news.getStatus());
