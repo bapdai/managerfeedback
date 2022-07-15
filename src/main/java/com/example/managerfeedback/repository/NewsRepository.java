@@ -15,7 +15,7 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
 
     Optional<News> findAllByIdAndStatus(Integer id, boolean status);
 
-//    List<News> findAllByAuthor(String author);
+    List<News> findAllByAuthor(String author);
 
-//    List<News> findAllByTitleAndDescription(String title, String description);
+    List<News> findAllByTitleAndDescription(String title, String description);
 }

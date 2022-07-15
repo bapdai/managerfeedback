@@ -54,6 +54,7 @@ public class NewsService {
 //        return newsRepository.findAllByAuthor(author);
 //    }
 
+//    tìm kiếm theo views(tin hot)
 //    List<News> list = newsRepository.findAll();
 //        Collections.sort(list, (s1, s2) -> s1.getViews().compareTo(s2.getViews()) > 1 ? 1 : s1.getViews().compareTo(s2.getViews()) < 1 ? -1 : 0);
 //        return list;
