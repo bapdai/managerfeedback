@@ -3,10 +3,14 @@ package com.example.managerfeedback.restapi;
 import com.example.managerfeedback.entity.News;
 import com.example.managerfeedback.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,4 +110,29 @@ public class NewsApi {
         newsService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+        /*
+        * Tìm kiếm dữ liệu và phân quyền theo tìm kiếm chức năng
+        * */
+//    Tìm kiếm theo title  và description
+//        @GetMapping("/user/find")
+//        @PreAuthorize("hasRole('USER')")
+//        public ResponseEntity<?> getFind(@PathVariable String title, String description, @RequestBody News news){
+//            newsService.save(news);
+//            Optional<News> optionalNews = newsService.getListByTitleAndDescriptionAndStatus(title, description, true);
+//            if (!optionalNews.isPresent()){
+//                ResponseEntity.badRequest().build();
+//            }
+//            optionalNews.get().setViews(optionalNews.get().getViews() + 1);
+//            newsService.save(optionalNews.get());
+//            return ResponseEntity.ok(optionalNews.get());
+//        }
+
+//  tÌM KIẾM THEO CÁCH 2:
+//    @PostMapping("/find/all")
+//    public ResponseEntity<?> getFind(@PathVariable String keyword, @RequestBody News news) {
+//        Optional<News> listNews = newsService.listAll(keyword);
+//        newsService.save(news);
+//        return ResponseEntity.ok(listNews.get());
+//    }
 }
