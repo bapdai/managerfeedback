@@ -2,8 +2,12 @@ package com.example.managerfeedback.repository;
 
 
 import com.example.managerfeedback.entity.News;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,17 +23,37 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
 
 //  Hàm tìm kiếm
 
-//    Optional<News> findAllByAuthor(String author);
+    @Query("SELECT re FROM News re WHERE "
+            + "re.title LIKE %:title% AND "
+            + "re.status = :abc")
+    public Page<News> filter(@Param("title") String title, Pageable pageable, boolean abc);
 
-//    Optional<News> findAllByAuthorAndStatus(String author, boolean status);
 
-//    Optional<News> findAllByTitleAndDescription(String title, String description);
+    @Query("SELECT re FROM News re WHERE "
+            + "re.title LIKE %:title% AND "
+            + "re.status = true ")
+    public Page<News> filter(@Param("title") String title, Pageable pageable);
 
-//    Optional<News> findAllByTitleAndDescriptionAndStatus(String title, String description, boolean status);
 
-//  Tìm kiếm theo cách 2:
+    @Query("SELECT re FROM News re WHERE " + "re.title LIKE %:title% OR "
+            + "re.description LIKE %:title% OR "
+            + "re.content LIKE %:title% OR "
+            + "re.author LIKE %:title% AND "
+            + "re.status = :abc")
+    public Page<News> filters(@Param("title") String title, Pageable pageable, boolean abc);
 
-//    @Query("SELECT p FROM News p WHERE CONCAT(p.title, p.description, p.status) LIKE %?1%")
-//    Optional<News> findAllByTitleAndDescription(String title, String description);
 
+    @Query("SELECT re FROM News re WHERE " + "re.title LIKE %:title% OR "
+            + "re.description LIKE %:title% OR "
+            + "re.content LIKE %:title% OR "
+            + "re.author LIKE %:title% AND "
+            + "re.status = true")
+    public Page<News> filters(@Param("title") String title, Pageable pageable);
+
+    @Query("SELECT re FROM News re")
+    List<News> findAllByView(int views, Sort sort);
+    Sort sort = Sort.by("views").descending();
+
+    @Query("SELECT re FROM News re ORDER BY re.createdAt DESC")
+    List<News> findAllByCreateAtDesc();
 }

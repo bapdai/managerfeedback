@@ -19,21 +19,36 @@ public class UserDetailsIpmpl implements UserDetails {
 
     private Long id;
 
+    private String firstname;
+
+
+    private String lastName;
+
     private String username;
 
 
     private String email;
+
+    private String phoneNumber;
+
+
+    private String address;
+
 
     @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsIpmpl(Long id, String username, String email, String password,
+    public UserDetailsIpmpl(Long id, String firstname, String lastName,String username, String email, String phoneNumber, String address, String password,
                             Collection<? extends GrantedAuthority> authorities){
         this.id= id;
+        this.firstname=firstname;
+        this.lastName=lastName;
         this.username=username;
         this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.address=address;
         this.password=password;
         this.authorities=authorities;
     }
@@ -45,8 +60,12 @@ public class UserDetailsIpmpl implements UserDetails {
 
         return new com.example.managerfeedback.service.UserDetailsIpmpl(
                 user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getPhoneNumber(),
+                user.getAddress(),
                 user.getPassword(),
                 authorities
         );

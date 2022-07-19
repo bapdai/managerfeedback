@@ -3,6 +3,9 @@ package com.example.managerfeedback.restapi;
 import com.example.managerfeedback.entity.News;
 import com.example.managerfeedback.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -111,28 +114,42 @@ public class NewsApi {
         return ResponseEntity.ok().build();
     }
 
-        /*
+    /*
         * Tìm kiếm dữ liệu và phân quyền theo tìm kiếm chức năng
-        * */
-//    Tìm kiếm theo title  và description
-//        @GetMapping("/user/find")
-//        @PreAuthorize("hasRole('USER')")
-//        public ResponseEntity<?> getFind(@PathVariable String title, String description, @RequestBody News news){
-//            newsService.save(news);
-//            Optional<News> optionalNews = newsService.getListByTitleAndDescriptionAndStatus(title, description, true);
-//            if (!optionalNews.isPresent()){
-//                ResponseEntity.badRequest().build();
-//            }
-//            optionalNews.get().setViews(optionalNews.get().getViews() + 1);
-//            newsService.save(optionalNews.get());
-//            return ResponseEntity.ok(optionalNews.get());
-//        }
+    * */
 
-//  tÌM KIẾM THEO CÁCH 2:
-//    @PostMapping("/find/all")
-//    public ResponseEntity<?> getFind(@PathVariable String keyword, @RequestBody News news) {
-//        Optional<News> listNews = newsService.listAll(keyword);
-//        newsService.save(news);
-//        return ResponseEntity.ok(listNews.get());
-//    }
+//    Tìm kiếm theo title
+    @GetMapping("/find/user/{keyword}")
+    @PreAuthorize("hasRole('USER')")
+    public Page<News> getFind(@PathVariable String keyword) {
+        return newsService.search(keyword, Pageable.ofSize(10));
+    }
+    @GetMapping("/find/manager/{keyword}/{abc}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFind(@PathVariable String keyword,@PathVariable boolean abc) {
+        return newsService.search(keyword, Pageable.ofSize(10), abc);
+    }
+
+//    Tìm kiếm theo từ khóa
+    @GetMapping("/find/all/{keyword}")
+    @PreAuthorize("hasRole('USER')")
+    public Page<News> getFindes(@PathVariable String keyword) {
+        return newsService.searches(keyword, Pageable.ofSize(10));
+    }
+
+    @GetMapping("/find/all/{keyword}/{abc}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFindes(@PathVariable String keyword,@PathVariable boolean abc) {
+        return newsService.searches(keyword, Pageable.ofSize(10), abc);
+    }
+//    Tin hot
+    @GetMapping("/find/views/hot")
+    public List<News> getFindByView(int views, Sort sort){
+        return newsService.getFindByView(views, sort);
+    }
+// Tin mới nhất
+    @GetMapping("/find/view/new")
+    public List<News> getFindByCreateAt(){
+        return newsService.getFindByCreateAt();
+    }
 }
