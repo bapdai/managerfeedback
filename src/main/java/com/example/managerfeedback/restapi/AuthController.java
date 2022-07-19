@@ -85,10 +85,10 @@ public class AuthController {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
-        User user = new User(signupRequest.getUsername(),
-                signupRequest.getEmail(),
-                signupRequest.getFirstName(),
+        User user = new User(signupRequest.getFirstName(),
                 signupRequest.getLastName(),
+                signupRequest.getUsername(),
+                signupRequest.getEmail(),
                 signupRequest.getPhoneNumber(),
                 signupRequest.getAddress(),
                 encoder.encode(signupRequest.getPassword()));
