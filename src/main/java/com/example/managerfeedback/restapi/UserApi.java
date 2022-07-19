@@ -54,6 +54,10 @@ public class UserApi {
         existUser.setUsername(user.getUsername());
         existUser.setEmail(user.getEmail());
         existUser.setPassword(user.getPassword());
+        existUser.setFirstName(user.getFirstName());
+        existUser.setLastName(user.getLastName());
+        existUser.setAddress(user.getAddress());
+        existUser.setPhoneNumber(user.getPhoneNumber());
         existUser.setRoles(user.getRoles());
         return ResponseEntity.ok(userDetailsServiceimpl.save(existUser));
     }
