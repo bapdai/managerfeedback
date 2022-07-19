@@ -16,14 +16,14 @@ import java.util.Date;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @CreationTimestamp
     private Date createdAt;
     private String title;
     private String description;
     private String img;
     private String content;
-    private Integer views = 1;
+    private int views = 1;
     private Boolean status;
     private String author;
 }

@@ -66,11 +66,11 @@ public class NewsService {
         return newsRepository.filters(title, pageable);
     }
 
-    public List<News> getFindByView(int views, Sort sort){
-        return newsRepository.findAllByView(views, sort);
+    public Page<News> getListSort(Pageable pageable){
+        return newsRepository.findAll(pageable);
     }
 
-    public List<News> getFindByCreateAt(){
-        return newsRepository.findAllByCreateAtDesc();
+    public Page<News> getListSortAndTrue(Pageable pageable){
+        return newsRepository.findAllAndTrue(pageable);
     }
 }

@@ -50,10 +50,9 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
             + "re.status = true")
     public Page<News> filters(@Param("title") String title, Pageable pageable);
 
-    @Query("SELECT re FROM News re")
-    List<News> findAllByView(int views, Sort sort);
-    Sort sort = Sort.by("views").descending();
+    public Page<News> findAll(Pageable pageable);
 
-    @Query("SELECT re FROM News re ORDER BY re.createdAt DESC")
-    List<News> findAllByCreateAtDesc();
+    @Query("SELECT re FROM News re WHERE "
+            + "re.status = true")
+    public Page<News> findAllAndTrue(Pageable pageable);
 }

@@ -4,6 +4,7 @@ import com.example.managerfeedback.entity.News;
 import com.example.managerfeedback.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
@@ -143,13 +144,31 @@ public class NewsApi {
         return newsService.searches(keyword, Pageable.ofSize(10), abc);
     }
 //    Tin hot
-    @GetMapping("/find/views/hot")
-    public List<News> getFindByView(int views, Sort sort){
-        return newsService.getFindByView(views, sort);
+    @GetMapping("/user/find/views/hot")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFindViewUser(){
+        Pageable pageable= PageRequest.of(0, 10, Sort.by("views").descending());
+        return newsService.getListSortAndTrue(pageable);
+    }
+
+    @GetMapping("/manager/find/views/hot")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFindByView(){
+        Pageable pageable= PageRequest.of(0, 10, Sort.by("views").descending());
+        return newsService.getListSort(pageable);
     }
 // Tin mới nhất
-    @GetMapping("/find/view/new")
-    public List<News> getFindByCreateAt(){
-        return newsService.getFindByCreateAt();
+    @GetMapping("/user/find/views/new")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFindByCreateAtUser(){
+        Pageable pageable= PageRequest.of(0, 10, Sort.by("createdAt").descending());
+        return newsService.getListSortAndTrue(pageable);
+    }
+
+    @GetMapping("/manager/find/views/new")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Page<News> getFindByCreateAt(){
+        Pageable pageable= PageRequest.of(0, 10, Sort.by("createdAt").descending());
+        return newsService.getListSort(pageable);
     }
 }
