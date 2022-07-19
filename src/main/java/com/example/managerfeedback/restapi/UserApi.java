@@ -51,13 +51,13 @@ public class UserApi {
         }
         User existUser = optionalUser.get();
 
-        existUser.setUsername(user.getUsername());
-        existUser.setEmail(user.getEmail());
-        existUser.setPassword(user.getPassword());
         existUser.setFirstName(user.getFirstName());
         existUser.setLastName(user.getLastName());
-        existUser.setAddress(user.getAddress());
+        existUser.setUsername(user.getUsername());
+        existUser.setEmail(user.getEmail());
         existUser.setPhoneNumber(user.getPhoneNumber());
+        existUser.setAddress(user.getAddress());
+        existUser.setPassword(user.getPassword());
         existUser.setRoles(user.getRoles());
         return ResponseEntity.ok(userDetailsServiceimpl.save(existUser));
     }
