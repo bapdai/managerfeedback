@@ -1,7 +1,15 @@
 package com.example.managerfeedback.restapi;
 
+import com.example.managerfeedback.dto.CategoryRequest;
+import com.example.managerfeedback.dto.MessageResponse;
+import com.example.managerfeedback.entity.Category;
 import com.example.managerfeedback.entity.News;
+import com.example.managerfeedback.entity.Role;
+import com.example.managerfeedback.repository.CategoryRepository;
 import com.example.managerfeedback.service.NewsService;
+import com.example.managerfeedback.util.ECategory;
+import com.example.managerfeedback.util.ERole;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,12 +19,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -24,6 +30,9 @@ import java.util.Optional;
 public class NewsApi {
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/views")
     public ResponseEntity<List<News>> getList(){
@@ -82,8 +91,74 @@ public class NewsApi {
 
     @PostMapping("/create")
     @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-    public ResponseEntity<News> create(@RequestBody News news){
-        return ResponseEntity.ok(newsService.save(news));
+    public ResponseEntity<?> create( @RequestBody CategoryRequest categoryRequest){
+        News news = new News(categoryRequest.getCreatedAt(),
+                categoryRequest.getTitle(),
+                categoryRequest.getDescription(),
+                categoryRequest.getImg(),
+                categoryRequest.getContent(),
+                categoryRequest.getViews(),
+                categoryRequest.getStatus(),
+                categoryRequest.getAuthor());
+        Set<String> strCategory = categoryRequest.getCategory();
+        Set<Category> category = new HashSet<>();
+        if (strCategory == null){
+            Category newsCategory = categoryRepository.findByName(ECategory.CATEGORY_HOMEPAGE)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            category.add(newsCategory);
+        }else {
+            strCategory.forEach(cate -> {
+                switch (cate){
+                    case "homepage":
+                        Category homepageCategory = categoryRepository.findByName(ECategory.CATEGORY_HOMEPAGE)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(homepageCategory);
+                        break;
+                    case "political":
+                        Category politicalCategory = categoryRepository.findByName(ECategory.CATEGORY_POLITICAL)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(politicalCategory);
+                        break;
+                    case "social":
+                        Category socialCategory = categoryRepository.findByName(ECategory.CATEGORY_SOCIAL)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(socialCategory);
+                        break;
+                    case "economy":
+                        Category economyCategory = categoryRepository.findByName(ECategory.CATEGORY_ECONOMY)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(economyCategory);
+                        break;
+                    case "health":
+                        Category healthCategory = categoryRepository.findByName(ECategory.CATEGORY_HEALTH)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(healthCategory);
+                        break;
+                    case "education":
+                        Category educationCategory = categoryRepository.findByName(ECategory.CATEGORY_EDUCATION)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(educationCategory);
+                        break;
+                    case "law":
+                        Category lawCategory = categoryRepository.findByName(ECategory.CATEGORY_LAW)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(lawCategory);
+                        break;
+                    case "sport":
+                        Category sportCategory = categoryRepository.findByName(ECategory.CATEGORY_SPORT)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(sportCategory);
+                        break;
+                    default:
+                        Category worldCategory = categoryRepository.findByName(ECategory.CATEGORY_WORLD)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        category.add(worldCategory);
+                }
+            });
+        }
+        news.setCategories(category);
+        newsService.save(news);
+        return ResponseEntity.ok(new MessageResponse("News has been added successfully!"));
     }
 
     @PutMapping("/update/{id}")
@@ -102,6 +177,7 @@ public class NewsApi {
         existNews.setViews(news.getViews());
         existNews.setStatus(news.getStatus());
         existNews.setAuthor(news.getAuthor());
+        existNews.setCategories(news.getCategories());
         return ResponseEntity.ok(newsService.save(existNews));
     }
 

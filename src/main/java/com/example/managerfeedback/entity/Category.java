@@ -20,7 +20,7 @@ public class Category {
     private int id;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 50)
     private ECategory name;
 
     private Boolean status = true;
