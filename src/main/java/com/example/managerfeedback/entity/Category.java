@@ -1,5 +1,6 @@
 package com.example.managerfeedback.entity;
 
+import com.example.managerfeedback.util.ECategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ECategory name;
 
-    private Boolean status;
+    private Boolean status = true;
 }

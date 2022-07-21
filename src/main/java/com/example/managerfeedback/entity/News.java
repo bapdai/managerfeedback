@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -25,6 +27,10 @@ public class News {
     private String img;
     private String content;
     private int views = 1;
-    private Boolean status;
+    private Boolean status = true;
     private String author;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "news_categories", joinColumns = @JoinColumn(name = "news_id")
+            , inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 }
