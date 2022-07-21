@@ -21,6 +21,8 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
 
     Optional<News> findAllByIdAndStatus(Integer id, boolean status);
 
+
+
 //  Hàm tìm kiếm
 
     @Query("SELECT re FROM News re WHERE "
