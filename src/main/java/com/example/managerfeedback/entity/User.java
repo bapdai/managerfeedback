@@ -4,6 +4,9 @@ import com.example.managerfeedback.entity.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,18 +22,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "firstName không được bỏ trống")
+    @Size(min = 1, message = "firstName không được bỏ trống")
     private String firstName;
 
+    @NotNull(message = " lastName không được bỏ trống ")
+    @Size(min = 1, message = "lastName không được bỏ trống")
     private String lastName;
 
+    @NotNull(message = " username không được bỏ trống ")
     private String username;
 
+    @NotNull(message = "email không được bỏ trống")
+    @Email(message = "Không đúng định dạng email!, Vui lòng nhập lại")
     private String email;
 
+    @NotNull(message = "phoneNumber không được bỏ trống")
+//    @Pattern(regexp = "^{10}", message = "Vui lòng nhập đúng định dạng số điện thoại")
     private String phoneNumber;
 
+    @NotNull(message = "address không được bỏ trống")
     private String address;
 
+    @NotNull(message = "password không được bỏ trống")
+    @Size(min = 6, message = "password phải lớn hơn hoặc bằng 6")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
