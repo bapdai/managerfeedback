@@ -19,19 +19,17 @@ public class CategoryApi {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/views")
+    @GetMapping("/all")
     public ResponseEntity<List<Category>> getList(){
         return ResponseEntity.ok(categoryService.findAllByStatus(true));
     }
 
     @GetMapping("/user/views")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<Category>> getListt(){
         return ResponseEntity.ok(categoryService.findAllByStatus(true));
     }
 
     @GetMapping("/user/views/{id}")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
         Optional<Category> optionalCategory = categoryService.getListByIdAndStatus(id, true);
         if (!optionalCategory.isPresent()){
