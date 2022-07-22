@@ -40,7 +40,6 @@ public class NewsApi {
     }
 
     @GetMapping("/user/views")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<News>> getListt(){
         return ResponseEntity.ok(newsService.getListByStatus(true));
     }
@@ -60,7 +59,6 @@ public class NewsApi {
 
 
     @GetMapping("/user/views/{id}")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
         Optional<News> optionalNews = newsService.getListByIdAndStatus(id,true);
         if (!optionalNews.isPresent()){
