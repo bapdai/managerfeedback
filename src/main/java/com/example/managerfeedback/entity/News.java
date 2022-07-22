@@ -23,11 +23,14 @@ public class News {
     @CreationTimestamp
     private Date createdAt;
     @Lob
+    @Column(name = "title", columnDefinition="VARCHAR(128)")
     private String title;
     @Lob
+    @Column(name = "description", columnDefinition="VARCHAR(128)")
     private String description;
     private String img;
     @Lob
+    @Column(name = "content", columnDefinition="VARCHAR(5000000)")
     private String content;
     private int views = 1;
     private Boolean status = true;
