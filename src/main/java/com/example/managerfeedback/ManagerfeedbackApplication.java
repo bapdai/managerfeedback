@@ -72,7 +72,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
         news3.setContent("Dự án xây mới Trung tâm Thể dục Thể thao Phan Đình Phùng có chủ trương từ năm 2008, " +
                 "nhưng đến hiện tại vẫn \"bất động\". Hàng chục nghìn m2 \"đất vàng\" nằm ngay trung tâm TP.HCM bị bỏ hoang.");
         news3.setViews(9);
-        news3.setStatus(true);
+        news3.setStatus(false);
         news3.setAuthor("Tổng hợp");
 
         News news4 = new News();
@@ -85,7 +85,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
         news4.setContent("Tại căn nhà trên đường đường Hoàng Văn Thụ, phường Cốc Lếu, cơ quan chức năng bắt giữ nghi phạm cầm đầu là Phạm Thị Huyền (32 tuổi, người địa phương) " +
                 "cùng 17 nhân viên cấp dưới đang có hành vi đòi nợ, nhắc nợ, thu hồi nợ.");
         news4.setViews(16);
-        news4.setStatus(true);
+        news4.setStatus(false);
         news4.setAuthor("Tổng hợp");
 
         News news5 = new News();
