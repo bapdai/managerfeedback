@@ -1,13 +1,13 @@
 package com.example.managerfeedback.util;
 
 public enum ECategory {
-    HOMEPAGE,
-    POLITICAL,
-    SOCIAL,
-    ECONOMY,
-    HEALTH,
-    EDUCATION,
-    LAW,
-    SPORT,
-    WORLD
+    CATEGORY_HOMEPAGE,
+    CATEGORY_POLITICAL,
+    CATEGORY_SOCIAL,
+    CATEGORY_ECONOMY,
+    CATEGORY_HEALTH,
+    CATEGORY_EDUCATION,
+    CATEGORY_LAW,
+    CATEGORY_SPORT,
+    CATEGORY_WORLD
 }
