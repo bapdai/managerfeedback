@@ -101,54 +101,54 @@ public class NewsApi {
         Set<String> strCategory = categoryRequest.getCategory();
         Set<Category> category = new HashSet<>();
         if (strCategory == null){
-            Category newsCategory = categoryRepository.findByName(ECategory.CATEGORY_HOMEPAGE)
+            Category newsCategory = categoryRepository.findByName(ECategory.HOMEPAGE)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             category.add(newsCategory);
         }else {
             strCategory.forEach(cate -> {
                 switch (cate){
                     case "homepage":
-                        Category homepageCategory = categoryRepository.findByName(ECategory.CATEGORY_HOMEPAGE)
+                        Category homepageCategory = categoryRepository.findByName(ECategory.HOMEPAGE)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(homepageCategory);
                         break;
                     case "political":
-                        Category politicalCategory = categoryRepository.findByName(ECategory.CATEGORY_POLITICAL)
+                        Category politicalCategory = categoryRepository.findByName(ECategory.POLITICAL)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(politicalCategory);
                         break;
                     case "social":
-                        Category socialCategory = categoryRepository.findByName(ECategory.CATEGORY_SOCIAL)
+                        Category socialCategory = categoryRepository.findByName(ECategory.SOCIAL)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(socialCategory);
                         break;
                     case "economy":
-                        Category economyCategory = categoryRepository.findByName(ECategory.CATEGORY_ECONOMY)
+                        Category economyCategory = categoryRepository.findByName(ECategory.ECONOMY)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(economyCategory);
                         break;
                     case "health":
-                        Category healthCategory = categoryRepository.findByName(ECategory.CATEGORY_HEALTH)
+                        Category healthCategory = categoryRepository.findByName(ECategory.HEALTH)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(healthCategory);
                         break;
                     case "education":
-                        Category educationCategory = categoryRepository.findByName(ECategory.CATEGORY_EDUCATION)
+                        Category educationCategory = categoryRepository.findByName(ECategory.EDUCATION)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(educationCategory);
                         break;
                     case "law":
-                        Category lawCategory = categoryRepository.findByName(ECategory.CATEGORY_LAW)
+                        Category lawCategory = categoryRepository.findByName(ECategory.LAW)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(lawCategory);
                         break;
                     case "sport":
-                        Category sportCategory = categoryRepository.findByName(ECategory.CATEGORY_SPORT)
+                        Category sportCategory = categoryRepository.findByName(ECategory.SPORT)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(sportCategory);
                         break;
                     default:
-                        Category worldCategory = categoryRepository.findByName(ECategory.CATEGORY_WORLD)
+                        Category worldCategory = categoryRepository.findByName(ECategory.WORLD)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         category.add(worldCategory);
                 }
