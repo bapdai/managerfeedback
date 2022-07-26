@@ -100,11 +100,11 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
         news5.setViews(18);
         news5.setStatus(true);
         news5.setAuthor("Tổng hợp");
-        newsService.save(news);
-        newsService.save(news1);
-        newsService.save(news2);
-        newsService.save(news3);
-        newsService.save(news4);
-        newsService.save(news5);
+//        newsService.save(news);
+//        newsService.save(news1);
+//        newsService.save(news2);
+//        newsService.save(news3);
+//        newsService.save(news4);
+//        newsService.save(news5);
     }
 }
