@@ -19,19 +19,21 @@ public class CategoryApi {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Category>> getList(){
-        return ResponseEntity.ok(categoryService.findAllByStatus(true));
-    }
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Category>> getList(){
+//        return ResponseEntity.ok(categoryService.findAllByStatus(true));
+//    }
 
     @GetMapping("/user/views")
     public ResponseEntity<List<Category>> getListt(){
-        return ResponseEntity.ok(categoryService.findAllByStatus(true));
+//        return ResponseEntity.ok(categoryService.findAllByStatus(true));
+        return ResponseEntity.ok(categoryService.findAll());
     }
 
     @GetMapping("/user/views/{id}")
     public ResponseEntity<?> getDetail(@PathVariable Integer id){
-        Optional<Category> optionalCategory = categoryService.getListByIdAndStatus(id, true);
+//        Optional<Category> optionalCategory = categoryService.getListByIdAndStatus(id, true);
+        Optional<Category> optionalCategory = categoryService.findById(id);
         if (!optionalCategory.isPresent()){
             ResponseEntity.badRequest().build();
         }
@@ -70,7 +72,7 @@ public class CategoryApi {
         Category existCategory = optionalCategory.get();
 
         existCategory.setName(category.getName());
-        existCategory.setStatus(category.getStatus());
+//        existCategory.setStatus(category.getStatus());
         return ResponseEntity.ok(categoryService.save(existCategory));
     }
 

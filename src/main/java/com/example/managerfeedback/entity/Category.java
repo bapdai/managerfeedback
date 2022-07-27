@@ -23,5 +23,5 @@ public class Category {
     @Column(length = 50)
     private ECategory name;
 
-    private Boolean status = true;
+//    private Boolean status = true;
 }

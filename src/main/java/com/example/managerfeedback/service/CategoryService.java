@@ -29,11 +29,11 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    public List<Category> findAllByStatus(Boolean status){
-        return categoryRepository.findAllByStatus(status);
-    }
+//    public List<Category> findAllByStatus(Boolean status){
+//        return categoryRepository.findAllByStatus(status);
+//    }
 
-    public Optional<Category> getListByIdAndStatus(Integer id, boolean status){
-        return categoryRepository.findAllByIdAndStatus(id, status);
-    }
+//    public Optional<Category> getListByIdAndStatus(Integer id, boolean status){
+//        return categoryRepository.findAllByIdAndStatus(id, status);
+//    }
 }
