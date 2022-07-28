@@ -6,6 +6,7 @@ import com.example.managerfeedback.entity.Category;
 import com.example.managerfeedback.entity.News;
 import com.example.managerfeedback.entity.Role;
 import com.example.managerfeedback.repository.CategoryRepository;
+import com.example.managerfeedback.service.CategoryService;
 import com.example.managerfeedback.service.NewsService;
 import com.example.managerfeedback.util.ECategory;
 import com.example.managerfeedback.util.ERole;
@@ -30,6 +31,9 @@ import java.util.*;
 public class NewsApi {
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    CategoryService categoryService;
 
     @Autowired
     CategoryRepository categoryRepository;
