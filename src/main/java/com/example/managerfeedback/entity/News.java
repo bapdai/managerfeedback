@@ -22,16 +22,14 @@ public class News {
     private int id;
     @CreationTimestamp
     private Date createdAt;
-    @Column(columnDefinition="text")
     private String title;
-    @Column(columnDefinition="text")
     private String description;
+    @Column(columnDefinition="text")
     private String img;
-    @Column
+    @Column(columnDefinition="text")
     private String content;
     private int views = 1;
     private Boolean status = true;
-    @Column(columnDefinition="text")
     private String author;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "news_categories", joinColumns = @JoinColumn(name = "news_id")

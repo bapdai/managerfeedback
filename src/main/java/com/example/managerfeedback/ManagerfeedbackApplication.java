@@ -37,6 +37,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
                 "nhưng đến hiện tại vẫn \"bất động\". Hàng chục nghìn m2 \"đất vàng\" nằm ngay trung tâm TP.HCM bị bỏ hoang.");
         news.setViews(9);
         news.setStatus(true);
+        news.setCategories(news.getCategories());
         news.setAuthor("Tổng hợp");
 
         News news1 = new News();
@@ -49,6 +50,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
                 " (30 tuổi, ngụ tỉnh Đồng Nai) để điều tra về hành vi giết người.");
         news1.setViews(6);
         news1.setStatus(true);
+        news1.setCategories(news1.getCategories());
         news1.setAuthor("Tổng hợp");
 
         News news2 = new News();
@@ -60,6 +62,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
         news2.setContent("Sáng 22/7, Công ty Xổ số Điện toán Việt Nam (Vietlott) đã tổ chức lễ trao thưởng cho 2 tỷ phú Jackpot trúng giải trong 2 kỳ quay số liên tiếp là 748 và 749.");
         news2.setViews(8);
         news2.setStatus(true);
+        news2.setCategories(news2.getCategories());
         news2.setAuthor("Tổng hợp");
 
         News news3 = new News();
@@ -73,6 +76,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
                 "nhưng đến hiện tại vẫn \"bất động\". Hàng chục nghìn m2 \"đất vàng\" nằm ngay trung tâm TP.HCM bị bỏ hoang.");
         news3.setViews(9);
         news3.setStatus(false);
+        news3.setCategories(news3.getCategories());
         news3.setAuthor("Tổng hợp");
 
         News news4 = new News();
@@ -86,6 +90,7 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
                 "cùng 17 nhân viên cấp dưới đang có hành vi đòi nợ, nhắc nợ, thu hồi nợ.");
         news4.setViews(16);
         news4.setStatus(false);
+        news4.setCategories(news4.getCategories());
         news4.setAuthor("Tổng hợp");
 
         News news5 = new News();
@@ -99,12 +104,13 @@ public class ManagerfeedbackApplication implements CommandLineRunner {
                 "cách Tp.Nha Trang, tỉnh Khánh Hòa khoảng 214 lý về phía Đông, cách Vũng Tàu khoảng 344 lý về phía Đông Bắc.");
         news5.setViews(18);
         news5.setStatus(true);
+        news5.setCategories(news5.getCategories());
         news5.setAuthor("Tổng hợp");
-//        newsService.save(news);
-//        newsService.save(news1);
-//        newsService.save(news2);
-//        newsService.save(news3);
-//        newsService.save(news4);
-//        newsService.save(news5);
+        newsService.save(news);
+        newsService.save(news1);
+        newsService.save(news2);
+        newsService.save(news3);
+        newsService.save(news4);
+        newsService.save(news5);
     }
 }
