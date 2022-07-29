@@ -57,8 +57,6 @@ public class User {
 //        this.username=username;
 //        this.email=email;
 //        this.password=password;
-//    }
-
     public User(String firstName, String lastName, String username, String email,String phoneNumber, String address, String password){
         this.firstName=firstName;
         this.lastName=lastName;
