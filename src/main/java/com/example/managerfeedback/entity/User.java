@@ -37,11 +37,11 @@ public class User {
     @Email(message = "Không đúng định dạng email!, Vui lòng nhập lại")
     private String email;
 
-    @NotNull(message = "phoneNumber không được bỏ trống")
+//    @NotNull(message = "phoneNumber không được bỏ trống")
 //    @Pattern(regexp = "^{10}", message = "Vui lòng nhập đúng định dạng số điện thoại")
     private String phoneNumber;
 
-    @NotNull(message = "address không được bỏ trống")
+//    @NotNull(message = "address không được bỏ trống")
     private String address;
 
     @NotNull(message = "password không được bỏ trống")
